@@ -1,39 +1,58 @@
-import "../global.js";
-import { getListenKey } from "./get-listen-key.js";
+import { APIKEY, log, wsTestnet, id } from "./global.js";
+// import { getListenKey } from "./ws-listen-key.js";
 
-const listenKey = getListenKey();
+const listenKey = "";
 
-// experiment 1
-const startUserDataStream = {
-  id: 1,
+export const startUserDataStream = {
+  id:`${id}`,
   method: "userDataStream.start",
   params: {
-    apiKey: `${APIKEY}`,
+    apiKey:`${APIKEY}`,
   },
 };
 
-// experiment 2
-// const startUserDataStream = JSON.stringify({
-//   id: 1,
-//   method: "userDataStream.start",
-//   params: {
-//     apiKey: `${APIKEY}`,
-//   },
-// });
+export const pingUserDataStream  = {
+  id: id,
+  method: "userDataStream.ping",
+  params: {
+    listenKey: listenKey,
+    apiKey: APIKEY,
+  }
+};
 
-const ws = new WebSocket(restTestBaseUrl);
+export const stopUserDataStream = {
+  id: id,
+  method: "userDataStream.stop",
+  params: {
+    listenKey: listenKey,
+    apiKey: APIKEY
+  }
+};
+// const listenKey = await getListenKey();
+
+// const ws = new WebSocket("wss://testnet.binance.vision/ws-api/v3");
+
+const ws = new WebSocket(wsTestnet);
 
 ws.addEventListener("message", (event) => {
-  log("Message from server ", event.data);
+  log("message ", event.data);
 });
 
 ws.addEventListener("open", () => {
-  if (socket.readyState && requestListenKey) {
-    log("socket.readyState");
-    ws.send(JSON.stringify(requestListenKey));
+  if (ws.readyState === 1) {
+    log("socket.readyState: " + ws.readyState);
+    log(JSON.stringify(startUserDataStream));
+    ws.send(JSON.stringify(startUserDataStream));
   }
 });
 
-setTimeout(function () {
-  log(ws.close()); //<------------------------------- works?
-}, 10000);
+ws.addEventListener("close", () => {
+  log("close");
+});
+
+ws.addEventListener("ping", ((e) => {
+wsTestnet.send("pong")});
+// 8(function () {
+//   log("closing websocket ");
+//   ws.close();
+// }, 60 * 3 * 1000);

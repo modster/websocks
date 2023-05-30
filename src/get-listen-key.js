@@ -1,13 +1,12 @@
 /**
  * @function getListenKey
- * @return listenKey
  */
-
-import "../global.js";
+// import "./global.js";
+import { log, APIKEY, restTestBaseUrl, userDataStreamPattern } from "./global.js";
 
 export async function getListenKey() {
   try {
-    const response = await fetch(`${restTestBaseUrl}${userDataStreamUrl}`, {
+    const response = await fetch(`${restTestBaseUrl}${userDataStreamPattern}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,8 +17,11 @@ export async function getListenKey() {
     if (!response.ok) throw new Error("response.ok is !ok");
     log(response.status, response.statusText); // e.g. 200 OK
     const dataobj = await response.json();
-    return dataobj;
+    log("dataObj: ", dataobj.listenKey);
+    return dataobj.listenKey;
   } catch (error) {
     console.warn(error.message);
   }
 }
+
+export const listenKey = await getListenKey();

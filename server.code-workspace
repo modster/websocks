@@ -2,12 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "../../Notes"
-		},
-		{
-			"path": "../deno-binance-api"
 		}
 	],
 	"settings": {
