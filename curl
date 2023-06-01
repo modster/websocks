@@ -1,0 +1,5 @@
+      PID    PPID    PGID     WINPID   TTY         UID    STIME COMMAND
+     1018     993    1018      37512  cons1     197610 04:01:33 /usr/bin/PS
+      993       1     993      25180  cons1     197610 04:01:29 /usr/bin/bash
+      992     761     992      35168  cons0     197610 22:57:51 /c/Users/Daddie/scoop/shims/deno
+      761       1     761      18488  cons0     197610   May 29 /usr/bin/bash

@@ -12,13 +12,13 @@ export async function getListenKey() {
         "Content-Type": "application/json",
         "X-MBX-APIKEY": APIKEY,
       },
-    });
-
+    })
     if (!response.ok) throw new Error("response.ok is !ok");
     log(response.status, response.statusText); // e.g. 200 OK
     const dataobj = await response.json();
-    log("dataObj: ", dataobj.listenKey);
-    return dataobj.listenKey;
+    log(dataObj);
+    log("listenKey: ", dataobj.listenKey);
+    return new Response(dataobj.listenKey;)
   } catch (error) {
     console.warn(error.message);
   }

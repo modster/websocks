@@ -1,0 +1,16 @@
+{
+  "id": 1685504056197,
+  "status": 200,
+  "result": {
+    "listenKey": "ilPjFPPxdtz5YBU0xW8HljlDB429IOAV3xu18js2lnJIbJfKlEz4ehmBCa7W"
+  },
+  "rateLimits": [
+    {
+      "rateLimitType": "REQUEST_WEIGHT",
+      "interval": "MINUTE",
+      "intervalNum": 1,
+      "limit": 1200,
+      "count": 2
+    }
+  ]
+}

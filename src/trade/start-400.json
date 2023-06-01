@@ -1,0 +1,17 @@
+{
+  "id": null,
+  "status": 400,
+  "error": {
+    "code": -1135,
+    "msg": "Invalid JSON request."
+  },
+  "rateLimits": [
+    {
+      "rateLimitType": "REQUEST_WEIGHT",
+      "interval": "MINUTE",
+      "intervalNum": 1,
+      "limit": 1200,
+      "count": 1
+    }
+  ]
+}
