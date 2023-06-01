@@ -1,58 +1,65 @@
-import { APIKEY, log, wsTestnet, id } from "./global.js";
-// import { getListenKey } from "./ws-listen-key.js";
+// import { serve } from "https://deno.land/std@0.184.0/http/server.ts";
+import {
+  APIKEY,
+  binanceApi,
+  binanceStream,
+  binanceWs,
+  binanceWsApiV3,
+  log,
+  SECRET,
+  testnetApi,
+  testnetStream,
+  testnetWs,
+  testnetWsApiV3,
+} from "./global.js";
 
-const listenKey = "";
+import * as uds from "./user-data.js";
+const timestamp = () => new Date.now();
 
-export const startUserDataStream = {
-  id:`${id}`,
+const listenKeyReq = JSON.stringify({
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "X-MBX-APIKEY": APIKEY,
+  },
+});
+
+const start = JSON.stringify({
+  id: timestamp,
   method: "userDataStream.start",
   params: {
-    apiKey:`${APIKEY}`,
-  },
-};
-
-export const pingUserDataStream  = {
-  id: id,
-  method: "userDataStream.ping",
-  params: {
-    listenKey: listenKey,
     apiKey: APIKEY,
-  }
-};
+  },
+});
 
-export const stopUserDataStream = {
-  id: id,
-  method: "userDataStream.stop",
-  params: {
-    listenKey: listenKey,
-    apiKey: APIKEY
-  }
-};
-// const listenKey = await getListenKey();
-
-// const ws = new WebSocket("wss://testnet.binance.vision/ws-api/v3");
-
+const listenKey = fetch(wsTestnet, listenKeyReq);
 const ws = new WebSocket(wsTestnet);
 
 ws.addEventListener("message", (event) => {
   log("message ", event.data);
-});
-
-ws.addEventListener("open", () => {
-  if (ws.readyState === 1) {
-    log("socket.readyState: " + ws.readyState);
-    log(JSON.stringify(startUserDataStream));
-    ws.send(JSON.stringify(startUserDataStream));
+  if (event.data === "ping") {
+    log("pong");
+    ws.send(uds.ping);
   }
+  /** @todo  case   **/
+});
+ws.addEventListener("open", () => {
+  log("Event: 'open'");
+  ws.send(start);
 });
 
 ws.addEventListener("close", () => {
   log("close");
 });
 
-ws.addEventListener("ping", ((e) => {
-wsTestnet.send("pong")});
-// 8(function () {
-//   log("closing websocket ");
-//   ws.close();
-// }, 60 * 3 * 1000);
+// ws.addEventListener("ping", (e) => {
+//   log(e);
+//   ws.send(ping);
+//   pinged = Date.now();
+// });
+
+/** @todo event emmiter */
+// function pinger() {
+
+// }
+// setInterval(() => pinger(), 30 * 60 * 1000);

@@ -18,7 +18,7 @@ export async function getListenKey() {
     const dataobj = await response.json();
     log(dataObj);
     log("listenKey: ", dataobj.listenKey);
-    return new Response(dataobj.listenKey;)
+    return new Response(dataobj.listenKey);
   } catch (error) {
     console.warn(error.message);
   }

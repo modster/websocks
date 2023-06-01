@@ -1,0 +1,133 @@
+
+
+
+```js
+
+  ------------------------------------ Event: 'open' ----------------------------------
+
+open
+1685513294065
+1
+listenKey: ilPjFPPxdtz5YBU0xW8HljlDB429IOAV3xu18js2lnJIbJfKlEz4ehmBCa7W
+ws.readyState: 1
+----------------------------------- Event: 'message' ----------------------------------
+undefined
+listenKey found
+ws.readyState: 1
+pong
+CloseEvent {
+  bubbles: false,
+  cancelable: false,
+  composed: false,
+  currentTarget: WebSocket {
+  url: "wss://testnet.binance.vision/ws-api/v3",
+  readyState: 3,
+  extensions: "",
+  protocol: "",
+  binaryType: "blob",
+  bufferedAmount: 0
+  },
+  defaultPrevented: false,
+  eventPhase: 2,
+  srcElement: null,
+  target: WebSocket {
+  url: "wss://testnet.binance.vision/ws-api/v3",
+  readyState: 3,
+  extensions: "",
+  protocol: "",
+  binaryType: "blob",
+  bufferedAmount: 0
+  },
+  returnValue: true,
+  timeStamp: 1685513294265,
+  type: "close",
+  wasClean: true,
+  code: 1008,
+  reason: "disconnected"
+}
+    
+```
+
+
+```js
+------------------------------------ Event: 'open' ----------------------------------
+1685516067011
+
+listenKey: ilPjFPPxdtz5YBU0xW8HljlDB429IOAV3xu18js2lnJIbJfKlEz4ehmBCa7W
+ws.readyState: 1
+
+------------------------------------ Event: 'message' ----------------------------------
+
+ timeStamp: 1685516067202
+
+      type:  message
+
+readyState: 1
+
+
+{
+  "id": 1685516066206,
+  "status": 400,
+  "error": {
+    "code": -1022,
+    "msg": "Signature for this request is not valid."
+  },
+  "rateLimits": [
+    {
+      "rateLimitType": "REQUEST_WEIGHT",
+      "interval": "MINUTE",
+      "intervalNum": 1,
+      "limit": 1200,
+      "count": 4
+    }
+  ]
+}
+
+------------------------------------ Event: 'close' ----------------------------------
+
+        event:  close
+
+    timeStamp: 1685516067203
+
+     wasClean: true
+
+         code: 1008
+
+       reason:  disconnected
+
+       ws.url:  wss: //testnet.binance.vision/ws-api/v3
+
+ws.readyState: 3,
+
+CloseEvent {
+bubbles: false,
+cancelable: false,
+composed: false,
+currentTarget: WebSocket {
+url: "wss://testnet.binance.vision/ws-api/v3",
+readyState: 3,
+extensions: "",
+protocol: "",
+binaryType: "blob",
+bufferedAmount: 0
+  },
+defaultPrevented: false,
+eventPhase: 2,
+srcElement: null,
+target: WebSocket {
+url: "wss://testnet.binance.vision/ws-api/v3",
+readyState: 3,
+extensions: "",
+protocol: "",
+binaryType: "blob",
+bufferedAmount: 0
+  },
+returnValue: true,
+timeStamp: 1685516067203,
+type: "close",
+wasClean: true,
+code: 1008,
+reason: "disconnected"
+}
+Watcher Process finished. Restarting on file change...
+```
